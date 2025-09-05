@@ -10,16 +10,24 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 import { useDebounce } from "use-debounce";
 import css from "./Notes.client.module.css";
-import { Farsan } from "next/font/google";
-
-export default function NotesClient({}) {
+interface NoteDeClientProps {
+  filter: string;
+}
+export default function NotesClient({ filter }: NoteDeClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchNote, setSearchNote] = useState("");
   const [updateSearchNote] = useDebounce(searchNote, 300);
   const { data } = useQuery({
-    queryKey: ["notes", { page: currentPage, search: updateSearchNote }],
-    queryFn: () => fetchNotes(currentPage, updateSearchNote),
+    queryKey: [
+      "notes",
+      {
+        page: currentPage,
+        search: updateSearchNote,
+        filter: filter,
+      },
+    ],
+    queryFn: () => fetchNotes(currentPage, updateSearchNote, filter),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });

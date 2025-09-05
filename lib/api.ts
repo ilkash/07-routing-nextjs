@@ -9,9 +9,11 @@ axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 
 export const fetchNotes = async (
   page: number,
-  mySearchNote: string
+  mySearchNote: string,
+  tag: string
 ): Promise<FetchNotesResponse> => {
-  const response = await axios.get<FetchNotesResponse>("/notes", {
+  const ulr = tag === "All" ? "./notes" : `/notes/${tag}`;
+  const response = await axios.get<FetchNotesResponse>(ulr, {
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
     },
