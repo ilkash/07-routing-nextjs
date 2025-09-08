@@ -1,10 +1,10 @@
 import Link from "next/link";
 import css from "./Header.module.css";
-import { fetchTagList } from "@/lib/api";
+import type { TagList } from "@/types/note";
 import TagsMenu from "../TagsMenu/TagsMenu";
 
 export default async function Header() {
-  const tags = await fetchTagList();
+  const tags: TagList[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 
   return (
     <header className={css.header}>

@@ -1,6 +1,5 @@
 import axios from "axios";
 import type { Note } from "@/types/note";
-import { url } from "inspector";
 
 interface FetchNotesResponse {
   notes: Note[];
@@ -13,8 +12,9 @@ export const fetchNotes = async (
   mySearchNote: string,
   tag?: string
 ): Promise<FetchNotesResponse> => {
-  const ulr = tag === "All" ? `/notes${tag}` : "/notes";
-  const response = await axios.get<FetchNotesResponse>(ulr, {
+  // const ulr = tag === "All" ? `/notes${tag}` : "/notes";
+
+  const response = await axios.get<FetchNotesResponse>("/notes", {
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
     },
@@ -55,15 +55,4 @@ export const fetchNoteById = async (noteID: string): Promise<Note> => {
     },
   });
   return response.data;
-};
-
-export const fetchTagList = async (): Promise<string[]> => {
-  const response = await axios.get<FetchNotesResponse>(`/notes`, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
-  const notes = response.data.notes;
-  const tags = [...new Set(notes.map((note: { tag: string }) => note.tag))];
-  return tags;
 };

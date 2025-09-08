@@ -6,3 +6,5 @@ export interface Note {
   createdAt: string;
   updatedAt: string;
 }
+
+export type TagList = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
