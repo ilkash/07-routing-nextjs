@@ -1,3 +1,2 @@
-export default function Default() {
-  return <div></div>;
-}
+const Default = () => null;
+export default Default;

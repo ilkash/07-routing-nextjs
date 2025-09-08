@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 interface ModalProps {
   onClose: () => void;
-  children: React.ReactNode | ((onClose: () => void) => React.ReactNode);
+  // children: React.ReactNode | ((onClose: () => void) => React.ReactNode);
+  children: React.ReactNode;
 }
 export default function Modal({ onClose, children }: ModalProps) {
   const router = useRouter();
@@ -40,7 +41,8 @@ export default function Modal({ onClose, children }: ModalProps) {
       onClick={handleBackdropClick}
     >
       <div className={css.modal}>
-        {typeof children === "function" ? children(onClose) : children}
+        {/* {typeof children === "function" ? children(onClose) : children} */}
+        {children}
       </div>
     </div>,
     document.body
