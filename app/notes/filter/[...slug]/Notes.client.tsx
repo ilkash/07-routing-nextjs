@@ -11,7 +11,7 @@ import { ChangeEvent, useState } from "react";
 import { useDebounce } from "use-debounce";
 import css from "./Notes.client.module.css";
 interface NoteDeClientProps {
-  filter: string;
+  filter?: string;
 }
 export default function NotesClient({ filter }: NoteDeClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function NotesClient({ filter }: NoteDeClientProps) {
       {
         page: currentPage,
         search: updateSearchNote,
-        filter: filter,
+        tag: filter,
       },
     ],
     queryFn: () => fetchNotes(currentPage, updateSearchNote, filter),

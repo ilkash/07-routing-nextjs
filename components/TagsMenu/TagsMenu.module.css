@@ -34,6 +34,7 @@
   list-style: none;
   min-width: 180px;
   z-index: 1000;
+  min-width: 118px;
 }
 
 .menuItem {

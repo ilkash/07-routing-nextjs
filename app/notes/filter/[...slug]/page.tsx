@@ -6,10 +6,11 @@ import {
 } from "@tanstack/react-query";
 import NotesClient from "./Notes.client";
 type Props = {
-  params: Promise<{ filter: string }>;
+  params: { slug: string[] };
 };
 export default async function Notes({ params }: Props) {
-  const { filter } = await params;
+  const slug = params.slug;
+  const filter = slug[0] === "all" ? undefined : slug[0];
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["notes", { page: 1, search: "", tag: filter }],
