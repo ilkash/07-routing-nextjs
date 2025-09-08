@@ -2,6 +2,7 @@ import Link from "next/link";
 import css from "./Sidebar.module.css";
 import { fetchTagList } from "@/lib/api";
 export default async function SidebarNotes() {
+  // await new Promise((r) => setTimeout(r, 3000));
   const tags = await fetchTagList();
   return (
     <ul className={css.menuList}>

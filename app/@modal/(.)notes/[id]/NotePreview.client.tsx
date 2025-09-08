@@ -2,9 +2,9 @@
 import { fetchNoteById } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 
-import css from "./NoteDetails.client.module.css";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/router";
+import css from "./NotePreview.module.css";
+import { useParams, useRouter } from "next/navigation";
+
 import Modal from "@/components/Modal/Modal";
 
 export default function PreviewModal() {
@@ -31,7 +31,9 @@ export default function PreviewModal() {
 
   return (
     <Modal onClose={close}>
-      <button onClick={close}>Close </button>
+      <button onClick={close} className={css.backBtn}>
+        Close{" "}
+      </button>
       <div>
         <div className={css.container}>
           <div className={css.item}>
